@@ -1,4 +1,8 @@
 <script>
+  //importar del astro
+  import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
+
+  // importar del html
   const canvas = document.querySelector("canvas");
   const ctx = canvas.getContext("2d");
   const ganarElement = document.getElementById("ganar"); //un string de tipo p
@@ -16,16 +20,7 @@
   ctx.scale(tam, tam);
 
   const puzzleSize = tam; // Tamaño del rompecabezas (x*x)
-  const piecesNew = [
-    { row: 0, col: 0, number: 1 },
-    { row: 0, col: 1, number: 2 },
-    { row: 0, col: 2, number: 3 },
-    { row: 1, col: 0, number: 4 },
-    { row: 1, col: 1, number: 5 },
-    { row: 1, col: 2, number: 6 },
-    { row: 2, col: 0, number: 7 },
-    { row: 2, col: 1, number: 8 },
-  ];
+  const piecesNew = generatePuzzle();
   const emptyPiece = { row: puzzleSize - 1, col: puzzleSize - 1 }; // Posición de la pieza vacía
 
   //fuente de letras
@@ -82,7 +77,7 @@
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(x, y, Rect_width / tam, Rect_height / tam);
       ctx.strokeRect(x, y, Rect_width / tam, Rect_height / tam);
-      ctx.fillStyle = "#000000";
+      ctx.fillStyle = "#000";
       ctx.font = `${fontSize}px Arial`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
@@ -102,7 +97,8 @@
     for (let i = pieces.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       console.log(
-        `Cambiando posición de la pieza ${pieces[i].number} desde [${pieces[i].row}, ${pieces[i].col}] a [${pieces[j].row}, ${pieces[j].col}]`
+        `Cambiando posición de la pieza ${pieces[i].number} desde 
+        [${pieces[i].row}, ${pieces[i].col}] a [${pieces[j].row}, ${pieces[j].col}]`
       );
 
       // Intercambia las posiciones de las piezas en la matriz
@@ -119,7 +115,6 @@
   //mover las picesas
 
   function movePiece(row, col) {
-    console.log(row,col)
     const piece = pieces.find((p) => p.row === row && p.col === col);
     const emptyRow = emptyPiece.row;
     const emptyCol = emptyPiece.col;
@@ -133,11 +128,15 @@
 
       // Imprimir en consola la pieza movida
       console.log(
-        `Se movió la pieza ${piece.number} a la posición [${piece.row}, ${piece.col}] y las nueva posicion vacia es [${emptyPiece.row}, ${emptyPiece.col}]`
+        `Se movió la pieza ${piece.number} a la posición [${piece.row},
+         ${piece.col}] y las nueva posicion vacia es [${emptyPiece.row}, ${emptyPiece.col}]`
       );
     }
     draw();
   }
+  //verificar los vacios
+  var analizar = AnaliticVoid( emptyPiece, tam)
+  //calcular 
 
   // Para el mouse
 
@@ -162,6 +161,20 @@
       console.log(pieces);
       console.log(emptyPiece);
     }
+    const valortemp = piecesNew.filter((p) => {
+      return pieces.some((piece) => {
+        return (
+            p.row !== piece.row&&
+            p.col !== piece.col&&
+            p.number === piece.number
+        );
+    });
+    })
+    valortemp.forEach((p)=>{
+      console.log(p.number)
+    })
+    const calcular= calcularFichaAMover(pieces, AnaliticVoid( emptyPiece, tam), piecesNew)
+    movePiece(calcular[0], calcular[1])
     window.requestAnimationFrame(update);
   }
 

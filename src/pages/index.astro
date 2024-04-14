@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Canvas from '../components/Canvas.astro'
+---
+
+<Layout title="Welcome to Astro.">
+	<div id="game">
+		<p id="ganar">asdasd</p>
+		<canvas></canvas>
+	</div>
+	<Canvas/>
+</Layout>
+
+<style>
+	canvas {
+		height: 400px;
+		width: 400px;
+		background-color: rgb(231, 149, 149);
+		border-radius: 10px;
+	}
+	#game {
+  		padding: 0;
+  		margin: 0;
+  		display: grid;
+  		place-content: center;
+  		height: 100vh;
+	}
+	#ganar{
+		color: white;
+	}
+</style>

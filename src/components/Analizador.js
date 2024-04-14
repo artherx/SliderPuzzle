@@ -49,6 +49,7 @@ function calcularFichaAMover(piece, validQuadrants, piecesNew) {
     // Verificamos si la ficha actual tiene un valor menor que el valor mínimo
     if (pieza && pieza.number !== 0 &&d !== 0 && d < valorMinimo && pieza.number < valorMinimoN) {
       itera++;
+      valorMinimoN= pieza.number;
       valorMinimo = d;
       fichaAMover[0] = row;
       fichaAMover[1] = col;
@@ -58,7 +59,7 @@ function calcularFichaAMover(piece, validQuadrants, piecesNew) {
     }
   }
 
-  return fichaAMover;
+  return {fichaAMover , valorMinimo};
 }
 
 export { AnaliticVoid, calcularFichaAMover };

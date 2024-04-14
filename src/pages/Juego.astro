@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Canvas from '../components/Canvas.astro'
+---
+
+<Layout title="Slider Puzzle Juego">
+	<button id="comenzar">Start</button>
+	<div id="game">
+		<p id="ganar">asdasd</p>
+		<canvas></canvas>
+	</div>
+	<Canvas/>
+</Layout>
+
+<style>
+	canvas {
+		height: 400px;
+		width: 400px;
+		background-color: #ffcba4;
+		border-radius: 10px;
+	}
+	#game {
+  		padding: 0;
+  		margin: 0;
+  		display: grid;
+  		place-content: center;
+  		height: 100vh;
+	}
+	#ganar{
+		color: white;
+	}
+	#comenzar{
+		width: 20%;
+		height: 64px;
+        border: none;
+        border-radius: 10px;
+        background-color: aquamarine;
+        color: #000;
+	}
+</style>

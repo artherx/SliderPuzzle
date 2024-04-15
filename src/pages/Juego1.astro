@@ -1,27 +1,55 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Canvas1 from "../components/Canvas1.astro";
 ---
 
-<Layout title="Slider puzzle Inicio">
-  <div id="contSlider">
-    <label for="default-range">Tamaño de juego:<p id="numero">3</p></label>
-    <input id="default-range" type="range" min="3" max="9" value="3" />
+<Layout title="Slider Puzzle Juego">
+  <button id="comenzar">Start</button>
+  <div id="game">
+    <p id="ganar"></p>
+    <canvas></canvas>
   </div>
   <script>
-	import {$numeroV} from '../stores/Numero.js'
     var rangeInput = document.getElementById(
       "default-range"
     ) as HTMLInputElement;
     var numero = document.getElementById("numero");
-	rangeInput.addEventListener('change', function(){
-		numero.textContent = rangeInput.value;
-		$numeroV.set(Number(rangeInput.value))
-		console.log($numeroV.get())
-	})
+
+    rangeInput.addEventListener("change", function () {
+      numero.textContent = rangeInput.value;
+    });
+    let valor = Number(rangeInput.value);
+	console.log(valor)
   </script>
+  <Canvas1/>
 </Layout>
 
 <style>
+  canvas {
+    height: 400px;
+    width: 400px;
+    background-color: #ffcba4;
+    border-radius: 10px;
+  }
+  #game {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    place-content: center;
+    height: 100vh;
+  }
+  #ganar {
+    color: white;
+  }
+  #comenzar {
+    width: 20%;
+    height: 64px;
+    border: none;
+    align-self: center;
+    border-radius: 10px;
+    background-color: aquamarine;
+    color: #000;
+  }
   #contSlider {
     width: 85%;
     align-self: center;

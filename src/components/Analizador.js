@@ -59,7 +59,7 @@ function calcularFichaAMover(piece, validQuadrants, piecesNew) {
     }
   }
 
-  return {fichaAMover , valorMinimo};
+  return {fichaAMover};
 }
 
 export { AnaliticVoid, calcularFichaAMover };

@@ -1,19 +1,19 @@
-
 <script>
   //importar del astro
-  
-import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
+  import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
 
   // importar del html
   const canvas = document.querySelector("canvas");
   const ctx = canvas.getContext("2d");
   const ganarElement = document.getElementById("ganar"); //un string de tipo p
-  const comenzar = document.getElementById("comenzar");
-  
-  let validarComienzo = false;
+  const botonStart = document.getElementById("comenzar");
+
+  /*
+   * ? Pregunta
+   */
   const Rect_width = 150;
   const Rect_height = 150;
-  let tam=3; //tamaño
+  const tam = 3; //tamaño
   var primVes = true; //verificar si ha ganado
   canvas.width = Rect_width * tam;
   canvas.height = Rect_height * tam;
@@ -135,9 +135,15 @@ import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
     }
     draw();
   }
+  //calcular
 
   // Para el mouse
-
+  let validoB = false;
+  console.log(`valor de validar: ${validoB}`);
+  botonStart.addEventListener("click", () => {
+    validoB = !validoB;
+    console.log(`valor de validar: ${validoB}`);
+  });
   canvas.addEventListener("click", function (event) {
     const rect = canvas.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
@@ -149,9 +155,6 @@ import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
 
     movePiece(clickedRow, clickedCol);
   });
-  comenzar.addEventListener("click", function () {
-    validarComienzo = !validarComienzo;
-  });
 
   //Refrescar frame
   function update() {
@@ -162,7 +165,7 @@ import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
       console.log(pieces);
       console.log(emptyPiece);
     }
-    if (validarComienzo) {
+    if (validoB) {
       const valortemp = piecesNew.filter((p) => {
         return pieces.some((piece) => {
           return (

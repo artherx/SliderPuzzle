@@ -1,19 +1,18 @@
-
 <script>
   //importar del astro
-  
-import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
+  import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
 
   // importar del html
   const canvas = document.querySelector("canvas");
   const ctx = canvas.getContext("2d");
   const ganarElement = document.getElementById("ganar"); //un string de tipo p
-  const comenzar = document.getElementById("comenzar");
-  
-  let validarComienzo = false;
+
+  /*
+   * ? Pregunta
+   */
   const Rect_width = 150;
   const Rect_height = 150;
-  let tam=6; //tamaño
+  const tam = 6; //tamaño
   var primVes = true; //verificar si ha ganado
   canvas.width = Rect_width * tam;
   canvas.height = Rect_height * tam;
@@ -135,6 +134,7 @@ import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
     }
     draw();
   }
+  //calcular 
 
   // Para el mouse
 
@@ -149,9 +149,6 @@ import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
 
     movePiece(clickedRow, clickedCol);
   });
-  comenzar.addEventListener("click", function () {
-    validarComienzo = !validarComienzo;
-  });
 
   //Refrescar frame
   function update() {
@@ -161,26 +158,6 @@ import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
       shufflePieces();
       console.log(pieces);
       console.log(emptyPiece);
-    }
-    if (validarComienzo) {
-      const valortemp = piecesNew.filter((p) => {
-        return pieces.some((piece) => {
-          return (
-            p.row !== piece.row &&
-            p.col !== piece.col &&
-            p.number === piece.number
-          );
-        });
-      });
-      valortemp.forEach((p) => {
-        console.log(p.number);
-      });
-      const calcular = calcularFichaAMover(
-        pieces,
-        AnaliticVoid(emptyPiece, tam),
-        piecesNew
-      );
-      movePiece(calcular.fichaAMover[0], calcular.fichaAMover[1]);
     }
     window.requestAnimationFrame(update);
   }

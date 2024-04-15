@@ -12,8 +12,11 @@ import Layout from "../layouts/Layout.astro";
       "default-range"
     ) as HTMLInputElement;
     var numero = document.getElementById("numero");
+    rangeInput.textContent =localStorage.getItem("rangeMatriz")??"3";
+    localStorage.setItem("rangeMatriz",rangeInput.value)
 	rangeInput.addEventListener('change', function(){
 		numero.textContent = rangeInput.value;
+    localStorage.setItem("rangeMatriz",rangeInput.value)
 	})
   </script>
 </Layout>

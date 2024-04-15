@@ -1,6 +1,5 @@
 <script>
   //importar del astro
-
   import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
 
   // importar del html
@@ -134,9 +133,13 @@
     }
     draw();
   }
+  //calcular
 
   // Para el mouse
 
+  comenzar.addEventListener("click", function () {
+    validarComienzo = !validarComienzo;
+  });
   canvas.addEventListener("click", function (event) {
     const rect = canvas.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
@@ -147,9 +150,6 @@
     const clickedCol = Math.floor((mouseX / rect.width) * puzzleSize);
 
     movePiece(clickedRow, clickedCol);
-  });
-  comenzar.addEventListener("click", function () {
-    validarComienzo = !validarComienzo;
   });
 
   //Refrescar frame

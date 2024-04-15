@@ -1,19 +1,18 @@
-
 <script>
   //importar del astro
-  
-import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
+
+  import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
 
   // importar del html
   const canvas = document.querySelector("canvas");
   const ctx = canvas.getContext("2d");
   const ganarElement = document.getElementById("ganar"); //un string de tipo p
   const comenzar = document.getElementById("comenzar");
-  
+
   let validarComienzo = false;
   const Rect_width = 150;
   const Rect_height = 150;
-  let tam=3; //tamaño
+  let tam = Number(localStorage.getItem("rangeMatriz")) ?? 3; //tamaño
   var primVes = true; //verificar si ha ganado
   canvas.width = Rect_width * tam;
   canvas.height = Rect_height * tam;

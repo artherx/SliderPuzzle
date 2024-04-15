@@ -9,19 +9,7 @@ import Canvas from "../components/Canvas.astro";
     <p id="ganar"></p>
     <canvas></canvas>
   </div>
-  <script>
-    var rangeInput = document.getElementById(
-      "default-range"
-    ) as HTMLInputElement;
-    var numero = document.getElementById("numero");
-
-    rangeInput.addEventListener("change", function () {
-      numero.textContent = rangeInput.value;
-    });
-    let valor = Number(rangeInput.value);
-	console.log(valor)
-  </script>
-  <Canvas/>
+  <Canvas />
 </Layout>
 
 <style>

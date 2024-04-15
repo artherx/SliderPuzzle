@@ -1,11 +1,4 @@
 ---
-import Juego from '../pages/Juego.astro';
-import Juego1 from '../pages/Juego1.astro';
-import Juego2 from '../pages/Juego2.astro';
-import Juego3 from '../pages/Juego3.astro';
-import Juego4 from '../pages/Juego4.astro';
-import Juego5 from '../pages/Juego5.astro';
-import Juego6 from '../pages/Juego6.astro';
 interface Props {
   title: string;
 }
@@ -27,88 +20,80 @@ const { title } = Astro.props;
     <slot />
     <div class="buttonBar">
       <a href="/">Inicio</a>
-      <a href=Juego>Jugar3</a>
-      <a href=Juego1>Jugar4</a>
-      <a href=Juego2>Jugar5</a>
-      <a href=Juego3>Jugar6</a>
-      <a href=Juego4>Jugar7</a>
-      <a href=Juego5>Jugar8</a>
-      <a href=Juego6>Jugar9</a>
-	  
     </div>
   </body>
+  <style is:global>
+    :root {
+      --accent: 136, 58, 234;
+      --accent-light: 224, 204, 250;
+      --accent-dark: 49, 10, 101;
+      --accent-gradient: linear-gradient(
+        45deg,
+        rgb(var(--accent)),
+        rgb(var(--accent-light)) 30%,
+        white 60%
+      );
+    }
+    * {
+      color: white;
+    }
+    html {
+      font-family: system-ui, sans-serif;
+      background: #13151a;
+      background-size: 224px;
+    }
+    code {
+      font-family:
+        Menlo,
+        Monaco,
+        Lucida Console,
+        Liberation Mono,
+        DejaVu Sans Mono,
+        Bitstream Vera Sans Mono,
+        Courier New,
+        monospace;
+    }
+    /* Estilo para el contenedor principal */
+    body {
+      display: flex;
+      flex-direction: column;
+      /* Otros estilos según tus necesidades */
+    }
+
+    /* Estilo para la barra de botones */
+    .buttonBar {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 70px;
+      margin: 0;
+      padding: 0;
+      background-color: aquamarine;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      display: flex;
+      /* Otros estilos según tus necesidades */
+    }
+
+    /* Estilo para los botones dentro de la barra */
+    .buttonBar a {
+      flex: 1; /* Ocupa todo el espacio disponible */
+      width: 50%;
+      height: 100%;
+      border: none;
+      background-color: transparent;
+      transition: background-color 0.3s ease-in-out;
+      color: #000;
+      text-align: center;
+      text-decoration-line: none;
+      font-size: large;
+      font-weight: bold;
+      align-content: center;
+    }
+
+    .buttonBar a:hover {
+      color: white;
+      background-color: #00000030;
+    }
+  </style>
 </html>
-<style is:global>
-  :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
-  }
-  * {
-    color: white;
-  }
-  html {
-    font-family: system-ui, sans-serif;
-    background: #13151a;
-    background-size: 224px;
-  }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-  }
-  /* Estilo para el contenedor principal */
-  body {
-    display: flex;
-    flex-direction: column;
-    /* Otros estilos según tus necesidades */
-  }
-
-  /* Estilo para la barra de botones */
-  .buttonBar {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 70px;
-    margin: 0;
-    padding: 0;
-    background-color: aquamarine;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-	display: flex;
-    /* Otros estilos según tus necesidades */
-  }
-
-  /* Estilo para los botones dentro de la barra */
-  .buttonBar a {
-    flex: 1; /* Ocupa todo el espacio disponible */
-	width: 50%;
-	height: 100%;
-    border: none;
-    background-color: transparent;
-    transition: background-color 0.3s ease-in-out;
-    color: #000;
-	text-align: center;
-	text-decoration-line: none;
-	font-size: large;
-	font-weight: bold;
-	align-content: center;
-  }
-
-  .buttonBar a:hover {
-    color: white;
-    background-color: #00000030;
-  }
-</style>

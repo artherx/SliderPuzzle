@@ -17,12 +17,12 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <slot />
     <div class="buttonBar">
       <a href="/">Inicio</a>
       <a href="/Juego">Jugar</a>
 	  
     </div>
+    <slot />
   </body>
 </html>
 <style is:global>
@@ -65,15 +65,14 @@ const { title } = Astro.props;
 
   /* Estilo para la barra de botones */
   .buttonBar {
-    position: absolute;
     bottom: 0;
     width: 100%;
     height: 70px;
-    margin: 0;
+    margin-bottom: 100px;
     padding: 0;
     background-color: aquamarine;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 	display: flex;
     /* Otros estilos según tus necesidades */
   }

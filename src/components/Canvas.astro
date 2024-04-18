@@ -1,6 +1,6 @@
 <script>
   //importar del astro
-  import { AnaliticVoid, calcularFichaAMover } from "./Analizador";
+  import { AnaliticVoid, vecinoLeal } from "./Analizador.js";
 
   // importar del html
   const canvas = document.querySelector("canvas");
@@ -13,7 +13,7 @@
    */
   const Rect_width = 150;
   const Rect_height = 150;
-  const tam = Number(localStorage.getItem("rangeMatriz"))??3; //tamaño
+  const tam = Number(localStorage.getItem("rangeMatriz")) ?? 3; //tamaño
   var primVes = true; //verificar si ha ganado
   canvas.width = Rect_width * tam;
   canvas.height = Rect_height * tam;
@@ -136,7 +136,8 @@
     draw();
   }
   //calcular
-
+  console.log(`antes que comenzara pedro ${emptyPiece.col}+${emptyPiece.row}`);
+  let pPedro = vecinoLeal(emptyPiece);
   // Para el mouse
   let validoB = false;
   console.log(`valor de validar: ${validoB}`);
@@ -165,25 +166,26 @@
       console.log(pieces);
       console.log(emptyPiece);
     }
+    //esperando por que le den al boton
     if (validoB) {
-      const valortemp = piecesNew.filter((p) => {
-        return pieces.some((piece) => {
-          return (
-            p.row !== piece.row &&
-            p.col !== piece.col &&
-            p.number === piece.number
-          );
-        });
-      });
-      valortemp.forEach((p) => {
-        console.log(p.number);
-      });
-      const calcular = calcularFichaAMover(
-        pieces,
-        AnaliticVoid(emptyPiece, tam),
-        piecesNew
+      if (JSON.stringify(pieces) === JSON.stringify(piecesNew)) {
+        validoB = !validoB;
+        return 0;
+      }
+      pPedro = vecinoLeal(emptyPiece);
+
+      console.log(
+        `casilla vacia esta el ma posicion ${emptyPiece.row}+${emptyPiece.col} y pedro es ${pPedro[1].row}+${pPedro[1].col} del tamaño de ${pPedro.length} y esto?}`
       );
-      movePiece(calcular.fichaAMover[0], calcular.fichaAMover[1]);
+      pPedro.forEach((p) => {
+        console.log(p);
+      });
+      console.log(`Ultima entrada`);
+
+      const anastacia = AnaliticVoid(emptyPiece, pPedro[0], tam);
+      console.log(`pasa`);
+      console.log(`anastacia es ${anastacia}`);
+      movePiece(anastacia[0].row, anastacia[0].col);
     }
     window.requestAnimationFrame(update);
   }
